@@ -35,10 +35,10 @@ double E1[] = { 1, 1, s };
 double F1[] = { -3, 8, s };
 double G1[] = { -5, 3, s };
 double H1[] = { -2, 0, s };
-double qq[] = { (G[0] + F[0]) / 2, (G[1] + F[1]) / 2, 0 };
-double r = sqrt(pow((F[0] - G[0]), 2) + pow((F[1] - G[1]), 2)) / 2;
-double angleG = acos((G[0] - (G[0] + F[0]) / 2) / r);
-double angleF = acos((F[0] - (G[0] + F[0]) / 2) / r);
+//double qq[] = { (G[0] + F[0]) / 2, (G[1] + F[1]) / 2, 0 };
+//double r = sqrt(pow((F[0] - G[0]), 2) + pow((F[1] - G[1]), 2)) / 2;
+//double angleG = acos((G[0] - (G[0] + F[0]) / 2) / r);
+//double angleF = acos((F[0] - (G[0] + F[0]) / 2) / r);
 double tmp[] = { 0,0,0 };
 
 //класс для настройки камеры
@@ -356,13 +356,13 @@ void flor(double z)
 		glNormal3d(0, 0, 1);
 	}
 
-	for (double a = -angleG; a <= angleF; a += 0.01) {
-		glBegin(GL_TRIANGLES);
-		glVertex3d(qq[0], qq[1], z);
-		glVertex3f(qq[0] - cos(a) * r, qq[1] - sin(a) * r, z);
-		glVertex3f(qq[0] - cos(a + 0.01) * r, qq[1] - sin(a + 0.01) * r, z);
-		glEnd();
-	}
+	//for (double a = -angleG; a <= angleF; a += 0.01) {
+	//	glBegin(GL_TRIANGLES);
+	//	glVertex3d(qq[0], qq[1], z);
+	//	glVertex3f(qq[0] - cos(a) * r, qq[1] - sin(a) * r, z);
+	//	glVertex3f(qq[0] - cos(a + 0.01) * r, qq[1] - sin(a + 0.01) * r, z);
+	//	glEnd();
+	//}
 
 	glBegin(GL_QUADS);
 	glTexCoord2d(0, 0);
@@ -375,14 +375,14 @@ void flor(double z)
 	glVertex3d(H[0], H[1], z);
 	glEnd();
 
-	/*glBegin(GL_TRIANGLES);
-	glTexCoord2d(0, 0);
-	glVertex3d(C[0], C[1], z);
-	glTexCoord2d(1, 1);
-	glVertex3d(H[0], H[1], z);
-	glTexCoord2d(0.5, 0.5);
-	glVertex3d(G[0], G[1], z);
-	glEnd(); */
+	//glBegin(GL_TRIANGLES);
+	//glTexCoord2d(0, 0);
+	//glVertex3d(C[0], C[1], z);
+	//glTexCoord2d(1, 1);
+	//glVertex3d(H[0], H[1], z);
+	//glTexCoord2d(0.5, 0.5);
+	//glVertex3d(G[0], G[1], z);
+	//glEnd();
 
 	glBegin(GL_QUADS);
 	glTexCoord2d(0, 0);
@@ -473,7 +473,15 @@ void wall(double z)
 	glVertex3dv(F);
 	glEnd();
 
-
+	glBegin(GL_QUADS);
+	glColor3d(0.0, 0.0, 1.0);
+	normal(G, F, G1, tmp);
+	glNormal3dv(tmp);
+	glVertex3dv(F);
+	glVertex3dv(F1);
+	glVertex3dv(G1);
+	glVertex3dv(G);
+	glEnd();
 
 	glBegin(GL_QUADS);
 	glColor3d(0.0, 0.0, 1.0);
@@ -497,35 +505,35 @@ void wall(double z)
 
 	glBegin(GL_QUADS);
 	glColor3d(0.5, 0.5, 1);
-	for (double a = -angleG; a <= angleF; a += 0.01) {
-		double x1 = qq[0] - cos(a) * r;
-		double y1 = qq[1] - sin(a) * r;
-		double x2 = qq[0] - cos(a + 0.01) * r;
-		double y2 = qq[1] - sin(a + 0.01) * r;
-		double xx1[3], xx2[3], xx3[3], xx4[3];
-		xx1[0] = x1;
-		xx1[1] = y1;
-		xx1[2] = 0;
-
-		xx2[0] = x1;
-		xx2[1] = y1;
-		xx2[2] = 1;
-
-		xx3[0] = x2;
-		xx3[1] = y2;
-		xx3[2] = 0;
-
-		xx4[0] = x2;
-		xx4[1] = y2;
-		xx4[2] = 1;
-
-		normal(xx1, xx2, xx3, tmp);
-		glNormal3dv(tmp);
-		glVertex3dv(xx1);
-		glVertex3dv(xx2);
-		glVertex3dv(xx4);
-		glVertex3dv(xx3);
-	}
+	//for (double a = -angleG; a <= angleF; a += 0.01) {
+	//	double x1 = qq[0] - cos(a) * r;
+	//	double y1 = qq[1] - sin(a) * r;
+	//	double x2 = qq[0] - cos(a + 0.01) * r;
+	//	double y2 = qq[1] - sin(a + 0.01) * r;
+	//	double xx1[3], xx2[3], xx3[3], xx4[3];
+	//	xx1[0] = x1;
+	//	xx1[1] = y1;
+	//	xx1[2] = 0;
+	//
+	//	xx2[0] = x1;
+	//	xx2[1] = y1;
+	//	xx2[2] = 1;
+	//
+	//	xx3[0] = x2;
+	//	xx3[1] = y2;
+	//	xx3[2] = 0;
+	//
+	//	xx4[0] = x2;
+	//	xx4[1] = y2;
+	//	xx4[2] = 1;
+	//
+	//	normal(xx1, xx2, xx3, tmp);
+	//	glNormal3dv(tmp);
+	//	glVertex3dv(xx1);
+	//	glVertex3dv(xx2);
+	//	glVertex3dv(xx4);
+	//	glVertex3dv(xx3);
+	//}
 	glEnd();
 
 }
